@@ -184,7 +184,7 @@ public class TreeSet<T> implements SortedSet<T> {
 	@Override
 	public T findKthSmallest(int pos) {
 
-		TreeNode<T> node = auxFindKthSmallest(root, pos);
+		TreeNode<T> node = auxFindKthSmallest(root, (Integer)pos);
 
 		return (node == null) ? null : node.data;
 

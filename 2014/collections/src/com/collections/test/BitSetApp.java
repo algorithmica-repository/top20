@@ -17,7 +17,7 @@ public class BitSetApp {
 		Random rand = new Random();
 
 		for (int index = 1; index <= 20; ++index) {
-			int random = rand.nextInt(20);
+			int random = rand.nextInt(40);
 
 			System.out.println("Ramdom numnber is = " + random);
 
