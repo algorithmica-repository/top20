@@ -1,10 +1,8 @@
-/*Given an array and a element find whether that  element is present or not using
- * binary search
- *  * */
-package com.algorithmica.arrays;
+package com.alg.basic;
 
 public class BinarySearch {
-	static int binarysearch(int a[], int n) {
+	
+	public static int binarysearch(int a[], int n) {
 		int l = 0;
 		int r = a.length;
 		int m;
