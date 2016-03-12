@@ -1,6 +1,7 @@
 package com.alg.top20.pqueue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HeapPrqueue implements IPriorityQueue {
@@ -27,8 +28,8 @@ public class HeapPrqueue implements IPriorityQueue {
 		}
 	}
 	
-	public HeapPrqueue(List<Integer> in) {
-		heap = in;
+	public HeapPrqueue(Integer[] in) {
+		heap = Arrays.asList(in);
 		for(int i = (heap.size()-2)/2; i >= 0; --i) {
 			adjustHeap(i);
 		}
