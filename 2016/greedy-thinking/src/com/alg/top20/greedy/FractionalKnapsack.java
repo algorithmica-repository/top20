@@ -1,22 +1,23 @@
 package com.alg.top20.greedy;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class FractionalKnapsack {
 
-	class Item implements Comparable<Item> {
-		Integer id;
+	public static class Item implements Comparable<Item> {
 		Integer quantity;
 		Integer profit;
-		public Item(Integer id, Integer quantity, Integer profit) {
-			super();
-			this.id = id;
+		public Item(Integer quantity, Integer profit) {
 			this.quantity = quantity;
 			this.profit = profit;
 		}
 		@Override
 		public int compareTo(Item obj2) {
 			return -(this.profit - obj2.profit);
+		}
+		public String toString() {
+			return quantity + " " + profit;
 		}
 	}
 	
@@ -34,9 +35,20 @@ public class FractionalKnapsack {
 		}
 		return totProfit;
 	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int size = Integer.parseInt(args[0]);
+		int w = Integer.parseInt(args[1]);
+		
+		Random r = new Random();		
+		Item[] items = new Item[size];
+		for(int i = 0; i < size; ++i) {
+			int qnt = r.nextInt(100) + 1;
+			int prft = r.nextInt(50) + 1;
+			items[i] = new Item(qnt, prft);
+			System.out.println(items[i]);
+		}
+		System.out.println(getMaxProfit(items, w));
 	}
 
 }
