@@ -28,6 +28,30 @@ public class GridOptimization {
 		return mem[in.length][in.length];
 	}
 	
+	public static int findMaxItems3(int[][] in) {
+		int[][] mem = new int[in.length+1][in.length+1];
+		for(int i = 1; i <= in.length; ++i) {
+			for(int j = 1; j <= in.length; ++j) {
+				mem[i][j] = Math.max(mem[i-1][j], mem[i][j-1]) + in[i-1][j-1];
+			}
+		}
+		return mem[in.length][in.length];
+	}
+	
+	public static int findMaxItems4(int[][] in) {
+		int[][] mem = new int[2][in.length+1];
+		for(int i = 1; i <= in.length; ++i) {
+			for(int j = 1; j <= in.length; ++j) {
+				mem[1][j] = Math.max(mem[0][j], mem[1][j-1]) + in[i-1][j-1];
+			}
+			for(int j = 1; j <= in.length; ++j) {
+				mem[0][j] = mem[1][j];
+			}
+		}
+		return mem[1][in.length];
+	}
+	
+	
 	public static void main(String[] args) {
 	/*	int[][] in = { {2,5,4}, {4,4,3}, {6,2,1}};
 		System.out.println(findMaxItems2(in));*/
@@ -42,7 +66,8 @@ public class GridOptimization {
 			}
 			//System.out.println();
 		}
-		System.out.println(findMaxItems2(in));
+		System.out.println(findMaxItems3(in));
+		System.out.println(findMaxItems4(in));
 	}
 
 }

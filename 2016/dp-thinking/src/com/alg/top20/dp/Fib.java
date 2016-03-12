@@ -29,8 +29,8 @@ public class Fib {
 	}
 	
 	public static void main(String[] args) {
-		//System.out.println(fib2(1000));
-		System.out.println(fib3(1000));
+		System.out.println(fib2(1000));
+		//System.out.println(fib3(1000));
 		//fib(30);
 	}
 
