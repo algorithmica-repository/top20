@@ -39,8 +39,8 @@ public class TestBloomFilter {
 
 		Random rnd = new Random(100);
 		for (int i = 0; i < n; ++i) {
-			StringBuilder sb = new StringBuilder(10);
-			for (int j = 0; j < 20; ++j)
+			StringBuilder sb = new StringBuilder(20);
+			for (int j = 0; j < 1000; ++j)
 				sb.append(alphabet.charAt(rnd.nextInt(alphabet.length())));
 			bw.write("www." + sb.toString() + ".com");
 			bw.newLine();
@@ -49,11 +49,11 @@ public class TestBloomFilter {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// test_basic();
+		 //test_basic();
 		File file = new File(args[0]);
 		int n = Integer.parseInt(args[1]);
-		generate_random_urls(file,n);
-		test_advanced(file,n);
+		generate_random_urls(file, n);
+		test_advanced(file, n);
 	}
 
 }
