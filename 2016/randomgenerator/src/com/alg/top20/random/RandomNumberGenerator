@@ -8,9 +8,9 @@ import java.util.Date;
  */
 public class RandomGenerator
 {
+   int m = 1;
   public static int  randomNumber(int min, int max)
   {
-      int m = 1;
       m++;
 
       return (m*max + min)/(m + 1);
