@@ -1,5 +1,6 @@
 package com.alg.top20.trie;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class TernarySearchTree implements ITrie {
@@ -10,11 +11,30 @@ public class TernarySearchTree implements ITrie {
 		root = null;
 		size = 0;
 	}
+	private TSTNode auxAdd(TSTNode root, String word) {
+		if(root == null) {
+			root = new TSTNode(word.charAt(0));
+		}
+		if(word.charAt(0) == root.data) {
+			if(word.length() == 1) {
+				root.isword = true;
+				return root;
+			}
+			root.middle = auxAdd(root.middle, word.substring(1));			
+		} else if(word.charAt(0) < root.data) {
+			root.left = auxAdd(root.left, word);
+		} else {
+			root.right = auxAdd(root.right, word);
+		}
+		return root;
+	}
 
 	@Override
 	public void add(String word) {
-		// TODO Auto-generated method stub
-
+		TSTNode tmp = auxAdd(root, word);
+		if(root == null)
+			root = tmp;
+		++size;
 	}
 
 	@Override
@@ -27,8 +47,9 @@ public class TernarySearchTree implements ITrie {
 	public boolean contains(String word) {
 		TSTNode current = root;
 		int i = 0;
-		while (true) {
+		while (current != null) {
 			if (word.charAt(i) == current.data) {
+				if(i == word.length()-1) return current.isword;
 				current = current.middle;
 				++i;
 			} else if (word.charAt(i) < current.data) {
@@ -37,7 +58,6 @@ public class TernarySearchTree implements ITrie {
 				current = current.right;
 			}
 		}
-
 		return false;
 	}
 
@@ -49,14 +69,39 @@ public class TernarySearchTree implements ITrie {
 
 	@Override
 	public Queue<String> autocomplete(String prefix) {
-		// TODO Auto-generated method stub
-		return null;
+		TSTNode current = root;
+		int i = 0;
+		while (current != null) {
+			if (prefix.charAt(i) == current.data) {
+				if(i == prefix.length()-1) break;
+				current = current.middle;
+				++i;
+			} else if (prefix.charAt(i) < current.data) {
+				current = current.left;
+			} else {
+				current = current.right;
+			}
+		}
+		Queue<String> words = new LinkedList<String>();
+		if(current.isword == true) words.add(prefix);
+		auxDisplay(current.middle, prefix, words );
+		return words;
 	}
 
+	private void auxDisplay(TSTNode root, String word, Queue<String> words) {
+		if(root == null) return;
+		auxDisplay(root.left, word, words);
+		if(root.isword == true) {
+			words.add(word + root.data);
+		}
+		auxDisplay(root.middle, word + root.data, words);
+		auxDisplay(root.right, word, words);
+	}
 	@Override
 	public void display() {
-		// TODO Auto-generated method stub
-
+		Queue<String> words = new LinkedList<String>();
+		auxDisplay(root, "", words);
+		System.out.println(words);
 	}
 
 	@Override
