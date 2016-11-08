@@ -1,4 +1,4 @@
-package com.alg.dp.receq;
+package com.alg.top20.dp.receq;
 
 public class RecEquation {
 	

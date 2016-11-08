@@ -1,4 +1,4 @@
-package com.alg.top20.fib;
+package com.alg.top20.dp.fib;
 
 public class NthFibonacci {
 
