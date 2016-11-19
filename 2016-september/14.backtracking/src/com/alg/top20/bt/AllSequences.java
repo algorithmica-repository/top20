@@ -1,4 +1,4 @@
-package com.alg.top20.bt.TernarySequence;
+package com.alg.top20.bt;
 
 import java.util.Arrays;
 
