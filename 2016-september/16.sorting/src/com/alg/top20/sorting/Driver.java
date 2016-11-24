@@ -14,7 +14,7 @@ public class Driver {
 		//System.out.println(Arrays.toString(in));
 		
 		long start = System.currentTimeMillis();
-		Sorting.heap_tree_sort2(in);
+		Sorting.quick_sort5(in);
 		long end = System.currentTimeMillis();
 		System.out.println("time:" + (end-start)/1000.0 + " seconds");
 		
