@@ -45,16 +45,9 @@ public class UrlFiltering {
 		bw.close();
 	}
 
-	static {
-		try {
-			init("D:/chrome/unsafe.txt");
-		} catch (Exception e) {
-
-		}
-	}
-
 	public static void main(String[] args) throws Exception {
 		// createRandomFile("D:/chrome/unsafe.txt", Integer.parseInt(args[0]));
+		init("D:/chrome/unsafe.txt");
 		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			String url = scanner.nextLine();
