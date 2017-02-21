@@ -36,8 +36,9 @@ public class DoublyLinkedList {
 	
 	public void display() {
 		for(DListNode current = head.next; current != head; current = current.next) {
-			System.out.println("(" +current.key+","+current.value+")");
+			System.out.print("(" +current.key+","+current.value+")");
 		}
+		System.out.println();
 	}
 	
 	public int size() {
