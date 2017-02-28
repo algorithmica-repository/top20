@@ -14,7 +14,21 @@ public class HashSet implements ISet {
 		size = 0;
 	}
 	private void rehash() {
-		
+		System.out.println("rehashing");
+		int newsize = 2*htbl.length;
+		ListNode[] htbl_new = new ListNode[newsize];
+		for(int i = 0; i < newsize; ++i)
+			htbl_new[i] = new ListNode();
+		for(int i = 0; i < htbl.length; ++i) {
+			ListNode tmp;
+			for(ListNode current = htbl[i].next; current != null; current = tmp) {
+				tmp = current.next;
+				int newindex = current.data.hashCode() % newsize;
+				current.next = htbl_new[newindex].next;
+				htbl_new[newindex].next = current;
+			}
+		}
+		htbl = htbl_new;		
 	}
 	
 	@Override
