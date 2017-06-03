@@ -1,9 +1,9 @@
 package com.alg.top20.basic.twosum;
-
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
 
-public class TwoSum {
+public class TwoSum1 {
 
 	//<= c .n(n-1)/2  ~ O(n^2)
 	public static boolean twoSum1(int[] in, int s) {
@@ -15,10 +15,9 @@ public class TwoSum {
 		return false;
 	}
 	
-	//log n-1  + log n-2 + .... + log 1
-	//log n-1 * n-2 *  ....1
-	//log (n-1)! ~O(n log n)
+	//n log n + n log n ~ O(n log n)
 	public static boolean twoSum2(int[] in, int s) {
+		Arrays.sort(in);
 		for(int i = 0; i < in.length-1; ++i) {
 			if(Arrays.binarySearch(in, i+1, in.length-1, s-in[i]) >= 0)
 				return true;
@@ -27,14 +26,27 @@ public class TwoSum {
 		return false;
 	}
 	
-	//<=c. n ~ O(n)
+	//n log n  + <=c. n ~ O(n log n)
 	public static boolean twoSum3(int[] in, int s) {
+		Arrays.sort(in);
 		for(int i = 0, j = in.length-1; i < j;) {
 			if(in[i] + in[j] == s) return true;
 			if(in[i] + in[j] < s)
 				++i;
 			else
 				--j;			
+		}
+		return false;
+	}
+	
+	//n * 2 * O(1) ~ O(n)
+	public static boolean twoSum4(int[] in, int s) {
+		HashSet<Integer> hset = new HashSet<Integer>();
+		for(int i = 0; i < in.length; ++i) {
+			if(hset.contains(s-in[i]))
+				return true;
+			else
+				hset.add(in[i]);			
 		}
 		return false;
 	}
@@ -58,8 +70,7 @@ public class TwoSum {
 		Random r = new Random();
 		for (int i = 0; i < in.length; ++i) 
 			in[i] = r.nextInt(size) + 1;
-		Arrays.sort(in);
-	
+
 		/*for(int i = 0; i < in.length; ++i) 
 			 System.out.print(in[i] + " ");
 		 System.out.println();*/
