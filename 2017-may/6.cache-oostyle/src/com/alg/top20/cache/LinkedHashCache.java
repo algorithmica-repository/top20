@@ -5,21 +5,23 @@ import java.util.HashMap;
 public class LinkedHashCache implements ICache {
 	private HashMap<String, DListNode> index;
 	private DoublyLinkedList list;
-	private int size;
+	private int capacity;
 	
-	public LinkedHashCache(int size) {
+	public LinkedHashCache(int capacity) {
 		index = new HashMap<String, DListNode>();
 		list = new DoublyLinkedList();
-		this.size = size;
+		this.capacity = capacity;
 	}
 	
 	//O(1)
 	@Override
 	public Integer get(String key) {
+		//retrieve list node from index
 		DListNode tmp  = index.get(key);
 		Integer res = null;
 		if(tmp != null) {
 			res = tmp.value;
+			//keep most recently accessed element at the end
 			list.removeAddLast(tmp);
 		}
 		return res;
@@ -28,10 +30,12 @@ public class LinkedHashCache implements ICache {
 	@Override
 	public void put(String key, Integer value) {
 		DListNode tmp = index.get(key);
+		//if key already exists, replace the old value with new value
 		if(tmp != null) {
 			tmp.value = value;
 			list.removeAddLast(tmp);
 		} else {
+			//key does not exist, add the new element to cache
 			if(isFull()) {
 				DListNode lru = list.removeFirst();
 				index.remove(lru.key);
@@ -43,7 +47,7 @@ public class LinkedHashCache implements ICache {
 	}
 
 	private boolean isFull() {
-		return true;
+		return capacity == list.size();
 	}
 	@Override
 	public void display() {
