@@ -1,3 +1,4 @@
+package com.alg.top20.trees;
 
 public class ExploreAllPaths {
 	
