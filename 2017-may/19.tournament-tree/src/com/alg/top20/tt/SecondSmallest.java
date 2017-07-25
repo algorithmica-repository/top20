@@ -1,4 +1,4 @@
-package com.alg.top20.rangequery;
+package com.alg.top20.tt;
 import java.util.Arrays;
 import java.util.Random;
 
