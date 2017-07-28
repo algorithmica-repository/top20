@@ -19,7 +19,7 @@ public class GraphUtils {
 	public static int[][] createRandomGraph(int n) {
 		int[][] graph = new int[n][n];
 		Random r = new Random();
-		for(int i = 0; i < n; ++i) {
+		for(int i = 0; i < n*n; ++i) {
 			int u = r.nextInt(n);
 			int v = r.nextInt(n);
 			if(u != v)

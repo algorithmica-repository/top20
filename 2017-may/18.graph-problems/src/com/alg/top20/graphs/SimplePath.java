@@ -6,7 +6,7 @@ import java.util.Queue;
 import com.alg.top20.dset.IDisjointSet;
 import com.alg.top20.dset.WeightedUnionCompressionSet;
 
-public class Connectivity {
+public class SimplePath {
 
 	// TC:O(n ^ 2) SC:O(n) ~ n + n
 	public static boolean isConnected1(int[][] in, int u, int v) {
