@@ -8,7 +8,7 @@ public class Successor {
 		while (l < r) {
 			int m = (l + r) / 2; 
 			if (nums[m] == target)
-				return m;
+				return m+1;
 			if (target < nums[m])
 				r = m;
 			else
