@@ -1,5 +1,7 @@
 package com.alg.top20.ll.reversal;
 
+import com.alg.top20.ll.ListNode;
+
 public class ReverseList {
 
 	//TC:O(n)

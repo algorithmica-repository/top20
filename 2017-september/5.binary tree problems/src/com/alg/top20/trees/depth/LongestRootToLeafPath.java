@@ -4,22 +4,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import com.alg.top20.trees.BinaryTreeUtils;
+import com.alg.top20.trees.MyInteger;
 import com.alg.top20.trees.TreeNode;
 
 public class LongestRootToLeafPath {
-
-	static class MyInteger {
-		int value;
-		MyInteger(int value) {
-			this.value = value;
-		}
-		int get() {
-			return value;
-		}
-		void set(int value) {
-			this.value = value;
-		}
-	}
 	//TC:O(n)
 	//SC:O(n)
 	public static int findLongestRootToLeafPath1(TreeNode root) {

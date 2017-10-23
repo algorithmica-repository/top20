@@ -2,6 +2,8 @@ package com.alg.top20.ll.lca;
 
 import java.util.HashSet;
 
+import com.alg.top20.ll.ListNode;
+
 public class LCA {
 
 	//TC:O(nm)

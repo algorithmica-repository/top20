@@ -2,6 +2,8 @@ package com.alg.top20.ll.random;
 
 import java.util.Random;
 
+import com.alg.top20.ll.ListNode;
+
 public class RandomNode {
 	
 	public static ListNode randomNode1(ListNode head) {

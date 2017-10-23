@@ -2,6 +2,8 @@ package com.alg.top20.ll.kthnodefromend;
 
 import java.util.Stack;
 
+import com.alg.top20.ll.ListNode;
+
 public class KthNodeEnd {
 
 	//TC:2n - k
