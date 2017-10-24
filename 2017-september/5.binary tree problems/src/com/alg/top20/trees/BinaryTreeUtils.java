@@ -36,6 +36,12 @@ public class BinaryTreeUtils {
 			root = add(root, r.nextInt(n)+1);
 		return root;
 	}
+	public static TreeNode createTree2(int n) {
+		TreeNode root = null;
+		for (int i = 0; i < n; ++i)
+			root = add(root, i+1);
+		return root;
+	}
 
 	// TC:O(n ^ 2)
 	// SC:O(n)

@@ -2,6 +2,7 @@ package com.alg.top20.ll.random;
 
 import java.util.Random;
 
+import com.alg.top20.ll.LinkedListUtils;
 import com.alg.top20.ll.ListNode;
 
 public class RandomNode {
@@ -32,15 +33,9 @@ public class RandomNode {
 	}
 	
 	public static void main(String[] args) {
-		ListNode head = new ListNode();
-		for(int i = 0; i < 5; ++i) {
-			ListNode tmp = new ListNode();
-			tmp.next = head.next;
-			head.next = tmp;
-		}
-		for(ListNode current = head; current != null; current = current.next)
-			System.out.print(current + "->");
-		System.out.println();
+		int n = Integer.parseInt(args[0]);
+		ListNode head = LinkedListUtils.createList(n);
+		LinkedListUtils.display(head);
 		System.out.println(randomNode2(head));
 	}
 }
