@@ -13,8 +13,10 @@ public class BSTUtils {
 		TreeNode parent = null;
 		while(current != null) {
 			parent = current;
-			if(data < current.data)
+			if(data < current.data) {
+				++current.ls_size;
 				current = current.left;
+			}
 			else
 				current = current.right;
 		}
@@ -48,6 +50,7 @@ public class BSTUtils {
 		tmp.right = auxBBST(m+1, r);
 		return tmp;
 	}
+	
 	// TC:O(n ^ 2)
 	// SC:O(n)
 	public static void display1(TreeNode root) {
@@ -59,7 +62,7 @@ public class BSTUtils {
 			return;
 		for (int i = 0; i < nspaces; ++i)
 			System.out.print(' ');
-		System.out.println(root.data + "(" + type + ")");
+		System.out.println(root.data + "(" + root.ls_size + "," + type + ")");
 		auxDisplay1(root.left, nspaces + 4, "L");
 		auxDisplay1(root.right, nspaces + 4, "R");
 	}
