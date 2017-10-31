@@ -7,5 +7,6 @@ public interface ITrie {
 	boolean remove(String word);
 	boolean contains(String word);
 	List<String> autocomplete(String prefix);
-	void display();
+	void displayAll();
+	void print();
 }

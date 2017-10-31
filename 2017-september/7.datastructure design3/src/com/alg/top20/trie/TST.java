@@ -18,7 +18,8 @@ class TSTNode {
 public class TST implements ITrie {
 	private TSTNode root;
 
-	@Override
+	//TC:O(m)
+	//SC:O(1)
 	public boolean add(String word) {
 		TSTNode current = root, parent = null;
 		int i = 0;
@@ -67,8 +68,9 @@ public class TST implements ITrie {
 
 	@Override
 	public boolean contains(String word) {
-		// TODO Auto-generated method stub
-		return false;
+		TSTNode tmp = findLastPrefixNode(root, word);
+		if(tmp == null) return false;
+		return tmp.isword;
 	}
 
 	private TSTNode findLastPrefixNode(TSTNode root, String word) {
@@ -76,6 +78,7 @@ public class TST implements ITrie {
 		int i = 0;
 		while (i < word.length() && current != null) {
 			if (word.charAt(i) == current.data) {
+				if(i == word.length()-1) return current;
 				current = current.middle;
 				i = i + 1;
 			} else if (word.charAt(i) < current.data) {
@@ -87,12 +90,12 @@ public class TST implements ITrie {
 		if(current == null) return null;
 		return current;
 	}
-	@Override
+	//TC:O(m+k)
 	public List<String> autocomplete(String prefix) {
 		TSTNode tmp = findLastPrefixNode(root, prefix);
 		if(tmp == null) return null;
 		List<String> words = new LinkedList<String>();
-		inorder(tmp, prefix, words);
+		inorder(tmp.middle, prefix, words);
 		return words;
 	}
 	
@@ -107,10 +110,29 @@ public class TST implements ITrie {
 	}
 
 	@Override
-	public void display() {
+	public void displayAll() {
 		List<String> words = new LinkedList<String>();
 		inorder(root, "", words);
 		System.out.println(words);
+	}
+
+	// TC:O(n ^ 2)
+	// SC:O(n)
+	private static void auxPrint(TSTNode root, int nspaces, String type) {
+		if (root == null)
+			return;
+		for (int i = 0; i < nspaces; ++i)
+			System.out.print(' ');
+		System.out.println(root.data + "(" + type + "," + root.isword + ")" );
+		auxPrint(root.left, nspaces + 4, "L");
+		auxPrint(root.middle, nspaces + 4, "M");
+		auxPrint(root.right, nspaces + 4, "R");
+	}
+
+	@Override
+	public void print() {
+		auxPrint(root, 0, "root");
+		
 	}
 
 }
