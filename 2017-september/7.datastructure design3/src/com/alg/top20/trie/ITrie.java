@@ -7,6 +7,7 @@ public interface ITrie {
 	boolean remove(String word);
 	boolean contains(String word);
 	List<String> autocomplete(String prefix);
+	int findLongestPrefix(String s);
 	void displayAll();
 	void print();
 }

@@ -1,12 +1,14 @@
 package com.alg.top20.trie;
 
+import java.util.LinkedList;
 import java.util.List;
 
 class TrieNode {
 	TrieNode[] children;
+	static final int NCHILDREN = 26;
 	boolean isword;
 	TrieNode() {
-		children = new TrieNode[26];
+		children = new TrieNode[NCHILDREN];
 	}
 }
 
@@ -40,32 +42,54 @@ public class RwayTrie implements ITrie {
 
 	//TC:O(m)
 	public boolean contains(String word) {
+		TrieNode tmp = findLastPrefixNode(word);
+		if(tmp == null) return false;
+		return tmp.isword;
+	}
+
+	public TrieNode findLastPrefixNode(String word) {
 		TrieNode current = root;
 		for(int i = 0; i < word.length(); ++i) {
 			int index = word.charAt(i)-'a';
 			if(current.children[index] == null) 
-				return false;
+				return null;
 			current = current.children[index];
 		}
-		return current.isword;
+		return current;
 	}
-
 	@Override
 	public List<String> autocomplete(String prefix) {
-		// TODO Auto-generated method stub
-		return null;
+		TrieNode tmp = findLastPrefixNode(prefix);
+		if(tmp == null) return null;
+		List<String> words = new LinkedList<String>();
+		traverse(tmp, prefix, words);
+		return words;
 	}
 
-	@Override
+	private void traverse(TrieNode root, String prefix, List<String> words) {
+		if(root == null) return;		
+		if(root.isword == true) 
+			words.add(prefix);
+		for(int i = 0; i < 26; ++i) {
+			traverse(root.children[i], prefix+(char)('a'+i), words);
+		}
+	}
 	public void displayAll() {
-		// TODO Auto-generated method stub
-		
+		List<String> words = new LinkedList<String>();
+		traverse(root, "", words);
+		System.out.println(words);		
 	}
 
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int findLongestPrefix(String s) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

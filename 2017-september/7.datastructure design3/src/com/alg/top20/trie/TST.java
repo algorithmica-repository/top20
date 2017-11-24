@@ -37,6 +37,7 @@ public class TST implements ITrie {
 		}
 		//word already exist
 		if (i == word.length()) {
+			if(parent.isword == true) return false;
 			parent.isword = true;
 			return true;
 		}
@@ -68,12 +69,12 @@ public class TST implements ITrie {
 
 	@Override
 	public boolean contains(String word) {
-		TSTNode tmp = findLastPrefixNode(root, word);
+		TSTNode tmp = findLastPrefixNode(word);
 		if(tmp == null) return false;
 		return tmp.isword;
 	}
 
-	private TSTNode findLastPrefixNode(TSTNode root, String word) {
+	private TSTNode findLastPrefixNode(String word) {
 		TSTNode current = root;
 		int i = 0;
 		while (i < word.length() && current != null) {
@@ -92,7 +93,7 @@ public class TST implements ITrie {
 	}
 	//TC:O(m+k)
 	public List<String> autocomplete(String prefix) {
-		TSTNode tmp = findLastPrefixNode(root, prefix);
+		TSTNode tmp = findLastPrefixNode(prefix);
 		if(tmp == null) return null;
 		List<String> words = new LinkedList<String>();
 		inorder(tmp.middle, prefix, words);
@@ -133,6 +134,24 @@ public class TST implements ITrie {
 	public void print() {
 		auxPrint(root, 0, "root");
 		
+	}
+
+	@Override
+	public int findLongestPrefix(String word) {
+		TSTNode current = root;
+		int i = 0;
+		while (i < word.length() && current != null) {
+			if (word.charAt(i) == current.data) {
+				if(i == word.length()-1) break;
+				current = current.middle;
+				i = i + 1;
+			} else if (word.charAt(i) < current.data) {
+				current = current.left;
+			} else {
+				current = current.right;
+			}
+		}
+		return i;
 	}
 
 }
