@@ -71,27 +71,7 @@ public class EditDistance {
 		}
 		for(int[] tmp: mem)
 			System.out.println(Arrays.toString(tmp));
-		printSequence(mem, m, n, s1, s2);
 		return mem[m][n];
-	}
-	//fix the bug: check  for boundaries
-	private static void printSequence(int[][] mem, int i, int j, String s1, String s2) {
-		if(i == 1 && j == 1) return;
-		if(s1.charAt(i-1) == s2.charAt(j-1)) {
-			printSequence(mem, i-1, j-1, s1, s2);
-		} else {
-			int mini = i-1, minj = j;
-			if(mem[i-1][j-1] < mem[mini][minj]) {
-				mini = i-1;
-				minj = j-1;
-			}
-			if(mem[i][j-1] < mem[mini][minj]) {
-				mini = i;
-				minj = j-1;
-			}
-			printSequence(mem, mini, minj, s1, s2);
-			System.out.println("(" + mini + "," + minj + ")");
-		}
 	}
 	
 	public static void main(String[] args) {
