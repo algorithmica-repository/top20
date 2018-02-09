@@ -1,4 +1,5 @@
-package com.alg.top20.adhoc;
+package com.alg.top20.divideprune;
+
 
 import java.util.Arrays;
 
@@ -35,7 +36,7 @@ public class MatrixSearch {
 		int left = 0, right = n * m - 1;
 
 		while (left <= right) {
-			int mid = (left + right) / 2;
+			int mid = left + (right-left)>>>1;
 			int element = in[mid / n][mid % n];
 			if (element == target)
 				return true;
