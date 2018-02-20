@@ -28,8 +28,8 @@ public class IdenticalArrays {
 		for(int i = 0; i < in2.length; ++i) {
 			Integer value = hmap.get(in2[i]);
 			if(value == null) return false;
-			if(value == 1) hmap.remove(in2[i]);
-			else  hmap.put(in2[i], value-1);
+			if(value > 1)
+				hmap.put(in2[i], value-1);
 		}
 		return true;	
 	}
