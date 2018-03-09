@@ -5,7 +5,7 @@ import java.util.Random;
 import com.alg.top20.ll.ListNode;
 
 public class RandomNode2 {
-	public RandomNode2(ListNode head) {
+	public RandomNode2() {
 		
 	}
 	public ListNode getRandom(ListNode head) {
