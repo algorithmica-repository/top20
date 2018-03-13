@@ -41,13 +41,38 @@ public class TreeSize {
 		return count;
 	}
 	
+	public static int treeSize4(TreeNode root) {
+		int count = 0;
+		while(root != null) { 
+			if(root.left == null) {
+				root = root.right;
+				++count;
+			} else {
+				TreeNode tmp = root.left;
+				while(tmp.right != null && tmp.right != root)
+					tmp = tmp.right;
+				if(tmp.right == null) {
+					++count;
+					tmp.right = root;
+					root = root.left;
+				} else {
+					tmp.right = null;
+					root = root.right;
+				}
+			} //end of outer else
+		}//end of while
+		return count;
+	}
+	
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
-		TreeNode root = BinaryTreeUtils.createTree(n);
-		BinaryTreeUtils.displayTree1(root);
+		TreeNode root = BinaryTreeUtils.createBinaryTree(n);
+		BinaryTreeUtils.displayTree2(root);
 		System.out.println(treeSize1(root));
 		System.out.println(treeSize2(root));
 		System.out.println(treeSize3(root));
+		System.out.println(treeSize4(root));
 
+		
 	}
 }
