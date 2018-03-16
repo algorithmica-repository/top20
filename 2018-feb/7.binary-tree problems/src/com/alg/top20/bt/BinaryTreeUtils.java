@@ -38,6 +38,14 @@ public class BinaryTreeUtils {
 		}
 		return root;
 	}
+	public static TreeNode createBinaryTree1(int n) {
+		TreeNode root = null;
+		for (int i = 0; i < n; ++i) {
+			int data = i + 1;
+			root = add(root, data);
+		}
+		return root;
+	}
 
 	public static void displayTree1(TreeNode root) {
 		Queue<TreeNode> q = new LinkedList<TreeNode>();
