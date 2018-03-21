@@ -2,7 +2,7 @@ package com.alg.top20.bbst;
 
 public class SearchBBST {
 
-	public static boolean search(TreeNode root, int x) {
+	public static boolean search(BSTNode root, int x) {
 		while(root != null) {
 			if(x == root.data) return true;
 			if(x < root.data) root = root.left;
