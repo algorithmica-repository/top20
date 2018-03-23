@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 import com.google.common.collect.SortedMultiset;
+import com.google.common.collect.TreeMultiset;
 
 public class MinMergeCost {
 
@@ -33,7 +35,7 @@ public class MinMergeCost {
 		for(int e:in)
 			pq.add(e);
 		int totcost = 0;
-		for(int i = 1; i < in.length; ++i) {
+		while(pq.size() > 1) {
 			int f1 = pq.remove();
 			int f2 = pq.remove();
 			pq.add(f1+f2);
@@ -42,22 +44,32 @@ public class MinMergeCost {
 		return totcost;
 	}
 	//TC:O(n log n)  SC:O(n)
+	//TODO: fix for duplicate access
 	public static int findMinMergeCost3(int[] in) {
-		SortedMultiset<Integer> mset = null;
+		SortedMultiset<Integer> tset = TreeMultiset.create();
 		for(int e:in)
-			pq.add(e);
+			tset.add(e);
 		int totcost = 0;
-		for(int i = 1; i < in.length; ++i) {
-			int f1 = pq.remove();
-			int f2 = pq.remove();
-			pq.add(f1+f2);
+		while(tset.size() >= 1) {
+			int f1 = tset.pollFirstEntry().getElement();
+			int f2 = tset.pollFirstEntry().getElement();
+			tset.add(f1+f2);
 			totcost += (f1+f2);
 		}
 		return totcost;
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int n = Integer.parseInt(args[0]);
+		Random r = new Random(100);
+		int[] in = new int[n];
+		for(int i = 0; i < n; ++i) {
+			in[i]= r.nextInt(100) + 1;
+		}
+		System.out.println(Arrays.toString(in));
+		System.out.println(findMinMergeCost1(in));
+		System.out.println(findMinMergeCost2(in));
+		System.out.println(findMinMergeCost3(in));
+		
 	}
 
 }
