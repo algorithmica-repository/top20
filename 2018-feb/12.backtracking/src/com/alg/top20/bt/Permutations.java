@@ -5,6 +5,30 @@ import java.util.Arrays;
 
 public class Permutations {
 
+	public static void permutations0(int[] in) {
+		int[] out = new int[in.length];
+		auxPerm0(0, in, out);
+	}
+	private static boolean isValid0(int[] out) {
+		for(int i = 0; i < out.length; ++i) {
+			for(int j = i+1; j < out.length; ++j) {
+				if(out[i]  == out[j]) return false;
+			}
+		}
+		return true;
+	}
+	private static void auxPerm0(int d, int[] in, int[] out) {
+		if(d == in.length) {
+			if(isValid0(out))
+				System.out.println(Arrays.toString(out));
+			return;
+		}
+		for(int i = 0; i < in.length; ++i) {
+			out[d] = in[i];
+			auxPerm0(d+1, in, out);
+		}
+	}
+	//backtracking
 	public static void permutations1(int[] in) {
 		int[] out = new int[in.length];
 		auxPerm1(0, in, out);
@@ -55,6 +79,7 @@ public class Permutations {
 		reverse(in, i+1, in.length-1);
 		return true;
 	}
+	//adhoc strategy
 	public static void permutations2(int[] in) {
 		do {
 			System.out.println(Arrays.toString(in));
