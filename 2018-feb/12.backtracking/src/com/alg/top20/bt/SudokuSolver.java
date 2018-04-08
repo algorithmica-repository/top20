@@ -44,7 +44,14 @@ public class SudokuSolver {
 		for(int i = 0; i < 9; ++i) 
 			if(in[i][c] == d) return false;
 		//box check
-		
+		int sr = r/3*3;
+		int sc = c/3*3;
+		for(int i = 0; i < 3; ++i) {
+			for(int j = 0; j < 3; ++j) {
+				if(in[sr+i][sc+j] == d) return false;
+			}
+		}
+		//add heuristics: logic derived from solving more puzzles
 		return true;
 	}
 	private static void auxSolver2(int r, int c, int[][] in) {
@@ -78,7 +85,7 @@ public class SudokuSolver {
 			{0,3,0,0,0,0,0,1,0},
 			{9,8,5,0,4,0,7,3,2}
 		};
-		sudokuSolver1(in);
+		sudokuSolver2(in);
 	}
 
 }
