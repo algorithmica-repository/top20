@@ -1,3 +1,4 @@
+package com.alg.top20.bt;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -58,8 +59,12 @@ public class TreeSize {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int n = Integer.parseInt(args[0]);
+		TreeNode root = BinaryTreeUtils.createBinaryTree(n);
+		BinaryTreeUtils.displayTree2(root);
+		System.out.println(treeSize1(root));
+		System.out.println(treeSize2(root));
+		System.out.println(treeSize3(root));
 	}
 
 }
