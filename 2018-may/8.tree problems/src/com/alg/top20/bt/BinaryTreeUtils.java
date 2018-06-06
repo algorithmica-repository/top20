@@ -72,15 +72,15 @@ public class BinaryTreeUtils {
 	}
 
 	public static void displayTree2(TreeNode root) {
-		auxDisplay(root, 0, 'R');
+		auxDisplay(root, 0, "Root");
 	}
-	private static void auxDisplay(TreeNode root, int nspaces, char type) {
+	private static void auxDisplay(TreeNode root, int nspaces, String type) {
 		if(root == null) return;
 		for(int i = 0; i < nspaces; ++i)
 			System.out.print(' ');
 		System.out.println(root.data + "(" + type + ")");
-		auxDisplay(root.left, nspaces + 4, 'L');		
-		auxDisplay(root.right, nspaces + 4, 'R');
+		auxDisplay(root.left, nspaces + 4, "L");		
+		auxDisplay(root.right, nspaces + 4, "R");
 	}
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
