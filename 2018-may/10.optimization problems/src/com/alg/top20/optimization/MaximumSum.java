@@ -1,3 +1,4 @@
+package com.alg.top20.optimization;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -31,6 +32,19 @@ public class MaximumSum {
 		return mem[i];
 	}
 	
+	//TC:O(n)  SC:O(n)
+	private static void getOptimalPath(int i, int[] mem) {
+		if(i == 1) {
+			System.out.println(i);
+			return;
+		}
+		if(mem[i] == mem[i-1]) {
+			getOptimalPath(i-1, mem);
+		} else {
+			getOptimalPath(i-2, mem);
+			System.out.println(i);
+		}
+	}
 	public static int maxSum3(int[] in) {
 		int[] mem = new int[in.length+1];
 		mem[0] = 0;
@@ -39,16 +53,18 @@ public class MaximumSum {
 			int exclusive = mem[i-1];
 			int inclusive = mem[i-2] + in[i-1];
 			mem[i] = Math.max(exclusive, inclusive);
-		}			
+		}	
+		System.out.println(Arrays.toString(mem));
+		getOptimalPath(in.length, mem);
 		return mem[in.length];
 	}
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
-		Random r = new Random();
+		Random r = new Random(100);
 		int[] in = new int[n];
 		for(int i = 0; i < n; ++i)
 			in[i] = r.nextInt(n) + 1;
-		//System.out.println(Arrays.toString(in));
+		System.out.println(Arrays.toString(in));
 		//System.out.println(maxSum2(in));
 		System.out.println(maxSum3(in));
 
