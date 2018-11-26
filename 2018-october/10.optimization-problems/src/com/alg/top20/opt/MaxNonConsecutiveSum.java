@@ -58,20 +58,36 @@ public class MaxNonConsecutiveSum {
 		mem[1] = in[0];
 		for(int i = 2; i <= in.length; ++i)
 			mem[i] = Math.max(mem[i-2] + in[i-1], mem[i-1]);
-		//System.out.println(Arrays.toString(mem));
+		System.out.println(Arrays.toString(mem));
+		retrieveOptimalSolution(in.length, mem);
+		System.out.println();
 		return mem[in.length];
+	}
+	private static void  retrieveOptimalSolution(int i, int[] mem) {
+		if(i == 1) {
+			System.out.print("[1]+");
+			return;
+		}
+		if(mem[i] == mem[i-1]) {
+			retrieveOptimalSolution(i-1, mem);
+		} else {
+			if(i-2 > 0) {
+			retrieveOptimalSolution(i-2, mem);
+			System.out.print("["+i+"]"+"+");
+			}
+		}
 	}
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
 		int[] in = new int[n];
-		Random r = new Random(100);
+		Random r = new Random();
 		for(int i = 0; i < n; ++i)
 			in[i] = r.nextInt(10)+1;
-		//System.out.println(Arrays.toString(in));
+		System.out.println(Arrays.toString(in));
 		//System.out.println(maxSum2(in));
 		//System.out.println(maxSum3(in));
 		System.out.println(maxSum4(in));
-		System.out.println(maxSum1(in));
+		//System.out.println(maxSum1(in));
 	}
 
 }

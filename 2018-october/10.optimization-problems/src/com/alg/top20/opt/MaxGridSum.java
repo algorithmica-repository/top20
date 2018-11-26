@@ -57,7 +57,24 @@ public class MaxGridSum {
 				mem[i][j] = Math.max(top, left) + in[i-1][j-1];
 			}
 		}
+		System.out.println();
+		for(int[] tmp:mem)
+			System.out.println(Arrays.toString(tmp));
+		retrieveOptimalPath(in.length, in.length, mem);
+		System.out.println("(" + in.length + "," + in.length + ")");
+
 		return mem[in.length][in.length];
+	}
+	
+	private static void retrieveOptimalPath(int i, int j, int[][] mem) {
+		if(i == 1 && j == 1) return;
+		if(mem[i-1][j] > mem[i][j-1]) {
+			retrieveOptimalPath(i-1, j, mem);
+			System.out.print("(" + (i-1) + "," + j + ")->");
+		} else {
+			retrieveOptimalPath(i, j-1, mem);
+			System.out.print("(" + i + "," + (j-1) + ")->");
+		}			
 	}
 
 	public static void main(String[] args) {
@@ -69,10 +86,10 @@ public class MaxGridSum {
 				in[i][j] = r.nextInt(10) + 1;
 			}
 		}
-		//for(int[] tmp:in)
-			//System.out.println(Arrays.toString(tmp));
+		for(int[] tmp:in)
+			System.out.println(Arrays.toString(tmp));
 		//System.out.println(maxSum2(in));
-		System.out.println(maxSum1(in));
+		//System.out.println(maxSum1(in));
 		System.out.println(maxSum4(in));
 	}
 
