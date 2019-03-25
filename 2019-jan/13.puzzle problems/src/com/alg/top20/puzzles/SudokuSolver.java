@@ -9,6 +9,14 @@ public class SudokuSolver {
 	}
 
 	private static boolean isValid1(int[][] in) {
+		for(int i = 0; i < 9; ++i) {
+			for(int j = 0; j < 9; ++j) {
+				int d = in[i][j];
+				in[i][j] = 0;
+				if(!isValid2(i, j, d, in)) return false;
+				in[i][j] = d;
+			}
+		}
 		return true;
 	}
 
@@ -41,7 +49,14 @@ public class SudokuSolver {
 			if(in[i][c] == d) return false;
 		for(int r = 0; r < 9; ++r)
 			if(in[r][j] == d) return false;
-		
+		int sr = i/3*3;
+		int sc = j/3*3;
+		for(int r = 0;  r < 3; ++r)  {
+			for(int c = 0; c < 3;  ++c) {
+				if(in[sr+r][sc+c] == d) return false;
+			}
+		}
+		//add heuristics
 		return true;
 	}
 
@@ -66,8 +81,18 @@ public class SudokuSolver {
 	}
 
 	public static void main(String[] args) {
-		int[][] in = new int[9][9];
-		solver1(in);
+		int[][] in = { 
+				{ 2, 7, 0, 0, 8, 0, 0, 5, 0 },
+				{ 0, 0, 0, 3, 0, 2, 0, 0, 6 }, 
+				{ 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+				{ 0, 8, 0, 0, 9, 0, 0, 0, 7 }, 
+				{ 4, 0, 0, 0, 0, 0, 0, 8, 0 },
+				{ 7, 0, 3, 0, 0, 0, 6, 0, 0 }, 
+				{ 0, 1, 0, 0, 0, 0, 0, 0, 2 },
+				{ 0, 0, 0, 0, 0, 5, 0, 0, 0 }, 
+				{ 0, 0, 9, 6, 0, 8, 4, 1, 0 } 
+			};
+		solver2(in);
 	}
 
 }
