@@ -18,6 +18,7 @@ public class Anagrams {
 	}
 	
 	public static boolean anagrams2(String s1, String s2) {
+		if(s1.length() != s2.length()) return false;
 		int[] aux = new int[26];
 		for(int i = 0; i < s1.length(); ++i)
 			++aux[s1.charAt(i) - 'a'];
@@ -28,19 +29,7 @@ public class Anagrams {
 		}			
 		return true;		
 	}
-	
-	public static boolean anagrams3(String s1, String s2) {
-		HashMap<Character, Integer> hmap
-		for(int i = 0; i < s1.length(); ++i)
-			++aux[s1.charAt(i) - 'a'];
-		for(int i = 0; i < s2.length(); ++i) {
-			int index = s2.charAt(i) - 'a';
-			if(aux[index] == 0) return false;
-			--aux[index];
-		}			
-		return true;		
-	}
-	
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
