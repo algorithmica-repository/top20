@@ -72,6 +72,46 @@ public class Sorting {
 		return lastmin;
 	}
 
+	private static int find_num_passes(int[] in) {
+		int max = 0;
+		for(int x:in) {
+			if(x > max)
+				max = x;
+		}
+		int count = 0;
+		while(max > 0 ){
+			max /= 10;
+			++count;
+		}
+		return count;
+	}
+	private static void counting_sort(int[] in, int divisor, int[] aux, int[] out) {
+		for(int x:in) {
+			int digit = (x/divisor)%10;
+			++aux[digit];
+		}
+		for(int i = 1; i < 10; ++i)
+			aux[i] = aux[i] + aux[i-1];
+		for(int i = in.length-1; i >= 0; --i) {
+			int digit = (in[i]/divisor)%10;
+			int pos = --aux[digit];
+			out[pos] = in[i];
+		}			
+	}
+	public static void sort5(int[] in) {
+		int npasses = find_num_passes(in);
+		int divisor = 1;
+		int[] aux = new int[10];
+		int[] out = new int[in.length];
+		for(int i = 0; i < npasses; ++i) {
+			for(int j = 0; j < 10; ++j)
+				aux[j] = 0;
+			counting_sort(in, divisor, aux, out);
+			for(int j = 0; j < in.length; ++j)
+				in[j] = out[j];
+			divisor *= 10;
+		}
+	}
 	private static void shuffle(int[] in) {
 		Random r = new Random(100);
 		for(int i = in.length-1; i >= 0; --i)
@@ -85,7 +125,7 @@ public class Sorting {
 		shuffle(in);
 		//System.out.println(Arrays.toString(in));
 		long start = System.currentTimeMillis();
-		sort1(in);
+		sort5(in);
 		long end = System.currentTimeMillis();
 		//System.out.println(Arrays.toString(in));
 		System.out.println("Time:" + (end-start)/1000.0 + "secs");
