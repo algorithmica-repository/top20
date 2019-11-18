@@ -2,6 +2,7 @@ package com.alg.top20.bst;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 class Result1 {
@@ -68,9 +69,18 @@ public class BSTUtils {
 	}
 	
 	public static void main(String[] args) {
-		int n = Integer.parseInt(args[0]);
-		TreeNode root = createUniqueBST(n);
-		displayTree(root);
+		//displayTree(root);
+		HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+		for(int i = 1; i <= 10000; ++i) {
+			TreeNode root = createUniqueBST(3);
+			List<Integer> key = SerDe.serialize(root);
+			System.out.println(key);
+			if(hmap.get(key.toString()) == null)
+				hmap.put(key.toString(), 1);
+			else
+				hmap.put(key.toString(), hmap.get(key.toString())+1);
+		}
+		System.out.println(hmap);
 	}
 
 }
