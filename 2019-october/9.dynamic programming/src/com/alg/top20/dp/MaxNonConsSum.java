@@ -31,7 +31,9 @@ public class MaxNonConsSum {
 	
 	public static int maxNonConsSum31(int[] in) {
 		int[] mem = new int[in.length];
-		return auxNonConsSum31(in, 0, mem);
+		auxNonConsSum31(in, 0, mem);
+		System.out.println(Arrays.toString(mem));
+		return mem[0];
 	}
 	private static int auxNonConsSum31(int[] in, int i, int[] mem) {
 		if(i >= in.length) return 0;
@@ -43,7 +45,28 @@ public class MaxNonConsSum {
 	}
 	
 	public static int maxNonConsSum32(int[] in) {
-		return 0;
+		int n = in.length;
+		int[] mem = new int[n+2];
+		mem[n+1] = mem[n] = 0;
+		for(int  i = n-1; i >= 0; --i) {
+			int inclusive = mem[i+2] + in[i];
+			int exclusive = mem[i+1];
+			mem[i] = Math.max(inclusive, exclusive);
+		}
+		System.out.println(Arrays.toString(mem));
+		tracePath(mem, in);
+		return mem[0];
+	}
+	private static void tracePath(int[] mem, int[] in) {
+		for(int i = 0; i < in.length; ) {
+			if(mem[i] == mem[i+1]) {
+				i = i + 1;
+			} else {
+				System.out.print("(" + in[i] + "," + i + ")" + "->");
+				i = i + 2;
+			}
+		}
+		System.out.println();
 	}
 
 
@@ -56,7 +79,9 @@ public class MaxNonConsSum {
 		System.out.println(Arrays.toString(in));
 		//System.out.println(maxNonConsSum1(in));
 		//System.out.println(maxNonConsSum2(in));
-		System.out.println(maxNonConsSum31(in));
+		//System.out.println(maxNonConsSum31(in));
+		System.out.println(maxNonConsSum32(in));
+
 	}
 
 }
