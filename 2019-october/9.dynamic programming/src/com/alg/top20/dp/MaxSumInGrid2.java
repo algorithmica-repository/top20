@@ -3,7 +3,6 @@ package com.alg.top20.dp;
 import java.util.Arrays;
 import java.util.Random;
 
-import sun.util.locale.provider.AuxLocaleProviderAdapter;
 
 public class MaxSumInGrid2 {
 
