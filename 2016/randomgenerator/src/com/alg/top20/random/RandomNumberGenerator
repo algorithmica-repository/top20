@@ -1,0 +1,19 @@
+package com.company;
+
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * Created by kamalnrf on 18/5/16.
+ */
+public class RandomGenerator
+{
+   int m = 1;
+  public static int  randomNumber(int min, int max)
+  {
+      m++;
+
+      return (m*max + min)/(m + 1);
+  }
+
+}
